@@ -8,10 +8,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Map;
 
-public class GetApiCall extends BaseTest {
+public class GetApiCallTests extends BaseTest {
 
 
     @Test
@@ -68,8 +67,8 @@ public class GetApiCall extends BaseTest {
         APIResponse response = context.get("/public/v2/users",
                 RequestOptions
                         .create()
-                        .setQueryParam("id", 7824146)
-                        .setQueryParam("name", "Rev. Yogendra Desai"));
+                        .setQueryParam("id", 7824140)
+                        .setQueryParam("status", "inactive"));
 
         // Asserts that the HTTP status code is 200 (OK)
         Assert.assertEquals(response.status(), 200, "Status code is not 200");
@@ -96,19 +95,19 @@ public class GetApiCall extends BaseTest {
         JsonNode firstUser = jsonNode.get(0);
 
         // Asserts that the "id" field matches the expected value
-        Assert.assertEquals(firstUser.get("id").asInt(), 7824146, "User ID does not match");
+        Assert.assertEquals(firstUser.get("id").asInt(), 7824140, "User ID does not match");
 
         // Asserts that the "name" field matches the expected value
-        Assert.assertEquals(firstUser.get("name").asText(), "Rev. Yogendra Desai", "User name does not match");
+        Assert.assertEquals(firstUser.get("name").asText(), "Rajinder Gowda Ret.", "User name does not match");
 
         // Asserts that the "email" field matches the expected value
-        Assert.assertEquals(firstUser.get("email").asText(), "rev_yogendra_desai@mann.example", "User email does not match");
+        Assert.assertEquals(firstUser.get("email").asText(), "rajinder_ret_gowda@okuneva-corkery.test", "User email does not match");
 
         // Asserts that the "gender" field matches the expected value
-        Assert.assertEquals(firstUser.get("gender").asText(), "male", "User gender does not match");
+        Assert.assertEquals(firstUser.get("gender").asText(), "female", "User gender does not match");
 
         // Asserts that the "status" field matches the expected value
-        Assert.assertEquals(firstUser.get("status").asText(), "active", "User status does not match");
+        Assert.assertEquals(firstUser.get("status").asText(), "inactive", "User status does not match");
 
 
 
