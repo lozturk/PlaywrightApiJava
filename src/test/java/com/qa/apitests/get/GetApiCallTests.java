@@ -1,9 +1,10 @@
-package com.qa.apitests;
+package com.qa.apitests.get;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.options.RequestOptions;
+import com.qa.apitests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

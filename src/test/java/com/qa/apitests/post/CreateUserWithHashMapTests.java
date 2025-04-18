@@ -1,27 +1,29 @@
-package com.qa.apitests;
+package com.qa.apitests.post;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.options.RequestOptions;
+import com.qa.apitests.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CreateUserWithPostTests extends BaseTest {
+public class CreateUserWithHashMapTests extends BaseTest {
 
     @Test
     public void createUserApiTest() throws IOException {
 
         String email = "john.doe" + System.currentTimeMillis() + "@example.com";
-        // Define the request payload for creating a new user
-        Map<String, Object> requestBody = new HashMap<>();
-        requestBody.put("name", "John Doe");
-        requestBody.put("email", email);
-        requestBody.put("gender", "male");
-        requestBody.put("status", "active");
+
+        // Define the request payload for creating a new user with Hash Map
+        Map<String, Object> requestBodyWithHashMap = new HashMap<>();
+        requestBodyWithHashMap.put("name", "John Doe");
+        requestBodyWithHashMap.put("email", email);
+        requestBodyWithHashMap.put("gender", "male");
+        requestBodyWithHashMap.put("status", "active");
 
         // Retrieve the token from VM options
         String token = System.getProperty("gorest.api.key");
@@ -31,7 +33,7 @@ public class CreateUserWithPostTests extends BaseTest {
                 RequestOptions.create()
                         .setHeader("Content-Type", "application/json")
                         .setHeader("Authorization", "Bearer " + token)
-                        .setData(requestBody));
+                        .setData(requestBodyWithHashMap));
 
         // Assert that the HTTP status code is 201 (Created)
         Assert.assertEquals(response.status(), 201, "Status code is not 201");
