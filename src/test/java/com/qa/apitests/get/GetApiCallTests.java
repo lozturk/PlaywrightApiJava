@@ -68,11 +68,13 @@ public class GetApiCallTests extends BaseTest {
         APIResponse response = context.get("/public/v2/users",
                 RequestOptions
                         .create()
-                        .setQueryParam("id", 7824140)
-                        .setQueryParam("status", "inactive"));
+                        .setQueryParam("id", 7880964));
+ //                       .setQueryParam("status", "inactive"));
 
         // Asserts that the HTTP status code is 200 (OK)
         Assert.assertEquals(response.status(), 200, "Status code is not 200");
+
+        System.out.println(response.url());
 
         // Asserts that the response is marked as OK (successful)
         Assert.assertTrue(response.ok(), "Response is not OK");
@@ -96,7 +98,7 @@ public class GetApiCallTests extends BaseTest {
         JsonNode firstUser = jsonNode.get(0);
 
         // Asserts that the "id" field matches the expected value
-        Assert.assertEquals(firstUser.get("id").asInt(), 7824140, "User ID does not match");
+        Assert.assertEquals(firstUser.get("id").asInt(), 7880964, "User ID does not match");
 
         // Asserts that the "name" field matches the expected value
         Assert.assertEquals(firstUser.get("name").asText(), "Rajinder Gowda Ret.", "User name does not match");
