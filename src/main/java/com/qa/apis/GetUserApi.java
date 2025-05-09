@@ -1,8 +1,7 @@
-package com.qa.api;
+package com.qa.apis;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.microsoft.playwright.APIResponse;
-import com.microsoft.playwright.options.RequestOptions;
 
 import java.io.IOException;
 
@@ -23,20 +22,9 @@ public class GetUserApi extends BaseApi{
                     .get(path, setQueryParameter("id", id));
     }
 
-
     public void tearDown() {
         super.tearDown();
     }
-
-    public JsonNode getJsonNode(APIResponse response) throws IOException {
-        return super.getObjectMapper().readTree(response.body());
-    }
-
-
-
-
-
-
 
 
 }

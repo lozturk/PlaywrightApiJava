@@ -1,22 +1,8 @@
-
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="GetTests" parallel="tests" thread-count="2">
     <test name="GetUsersTest">
         <classes>
-            <class name="com.qa.apitests.crudtests.CrudTests">
-                <methods>
-                    <include name="getUsersTest"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-    <test name="GetUserByIdTest">
-        <classes>
-            <class name="com.qa.apitests.crudtests.CrudTests">
-                <methods>
-                    <include name="getUserByIdTest"/>
-                </methods>
-            </class>
+            <class name="com.qa.apitests.crudtests.GetUserApiTests"/>
         </classes>
     </test>
 </suite>

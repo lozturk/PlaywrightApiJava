@@ -31,7 +31,7 @@ public class CreateUserWithJsonFileTests extends BaseTest {
     @DataProvider(name = "userDataProvider")
     public Object[][] userDataProvider() throws IOException {
         // Read the JSON payload from the file
-        File file = new File("src/test/data/user.json");
+        File file = new File("src/main/java/com/qa/data/user.json");
         byte[] fileBytes = Files.readAllBytes(file.toPath());
         return new Object[][]{{fileBytes}};
     }
