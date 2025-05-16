@@ -3,7 +3,7 @@ package com.qa.apitests;
 import com.microsoft.playwright.APIRequest;
 import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.Playwright;
-import com.qa.constants.Constants;
+import com.qa.utils.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;

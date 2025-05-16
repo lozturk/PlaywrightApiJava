@@ -4,13 +4,15 @@ import com.github.javafaker.Faker;
 import com.qa.apis.GetUserApi;
 import com.qa.apis.UpdateUserApi;
 import com.qa.apitests.BaseTest;
-import com.qa.constants.Constants;
+import com.qa.utils.Constants;
 import com.qa.utils.Users;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
+
+import static com.qa.utils.Constants.AUTHORIZATION_HEADER;
 
 
 public class UpdateUserApiTests extends BaseTest {
@@ -39,7 +41,7 @@ public class UpdateUserApiTests extends BaseTest {
                                .status(status)
                                .build();
 
-            return new Object[]{"Authorization", token, users};
+            return new Object[]{AUTHORIZATION_HEADER, token, users};
         }).limit(3).toArray(Object[][]::new);
     }
 

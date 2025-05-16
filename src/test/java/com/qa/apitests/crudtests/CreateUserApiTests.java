@@ -3,7 +3,7 @@ package com.qa.apitests.crudtests;
 
 import com.qa.apis.CreateUserApi;
 import com.qa.apitests.BaseTest;
-import com.qa.constants.Constants;
+import com.qa.utils.Constants;
 import com.qa.utils.User;
 import com.qa.utils.Users;
 import org.testng.Assert;
@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.qa.utils.Constants.AUTHORIZATION_HEADER;
 
 
 public class CreateUserApiTests extends BaseTest {
@@ -69,11 +71,11 @@ public class CreateUserApiTests extends BaseTest {
 
 
         return new Object[][]{
-                {"Authorization", token, requestBodyWithHashMap},
-                {"Authorization", token, requestBodyWithJsonString},
-                {"Authorization", token, this.user},
-                {"Authorization", token, this.users},
-                {"Authorization", token, fileBytes},
+                {AUTHORIZATION_HEADER, token, requestBodyWithHashMap},
+                {AUTHORIZATION_HEADER, token, requestBodyWithJsonString},
+                {AUTHORIZATION_HEADER, token, this.user},
+                {AUTHORIZATION_HEADER, token, this.users},
+                {AUTHORIZATION_HEADER, token, fileBytes},
         };
     }
 

@@ -3,7 +3,7 @@ package com.qa.apitests.crudtests;
 
 import com.qa.apis.GetUserApi;
 import com.qa.apitests.BaseTest;
-import com.qa.constants.Constants;
+import com.qa.utils.Constants;
 import org.testng.Assert;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
