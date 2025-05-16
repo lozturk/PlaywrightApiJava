@@ -4,17 +4,14 @@ import com.github.javafaker.Faker;
 import com.qa.apis.GetUserApi;
 import com.qa.apis.UpdateUserApi;
 import com.qa.apitests.BaseTest;
+import com.qa.constants.Constants;
 import com.qa.utils.Users;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Stream;
 
-import static com.qa.constants.ApiPaths.GET_USERS;
-import static com.qa.constants.ApiPaths.UPDATE_USERS;
 
 public class UpdateUserApiTests extends BaseTest {
 
@@ -49,7 +46,7 @@ public class UpdateUserApiTests extends BaseTest {
     @Test(description = "This is update user test", dataProvider = "userData")
     public void updateUserTest(String headerKey, String token, Users users) throws Exception {
         this.getUserApi = new GetUserApi(apiRequestContext);
-        var getUsersApiResponse = getUserApi.getUsers(GET_USERS.getApiPath());
+        var getUsersApiResponse = getUserApi.getUsers(Constants.BASE_ENV_PATH);
         var getUsersApiResponseBody = getUserApi.getJsonNode(getUsersApiResponse);
         int randomIndex = ThreadLocalRandom.current().nextInt(0, 9);
         this.userId = getUsersApiResponseBody.get(randomIndex).get("id").asInt();
@@ -57,7 +54,7 @@ public class UpdateUserApiTests extends BaseTest {
         System.out.println(getUsersApiResponseBody.get(randomIndex).toPrettyString());
         this.updateUserApi = new UpdateUserApi(apiRequestContext);
         var updateUserApiResponse = updateUserApi
-                .updateUser(UPDATE_USERS.getApiPath() + this.userId, headerKey, token, users);
+                .updateUser(Constants.BASE_ENV_PATH + this.userId, headerKey, token, users);
         Assert.assertEquals(updateUserApiResponse.status(), 200, "Status code is not 200");
         var updateUserApiResponseBody = updateUserApi.getJsonNode(updateUserApiResponse);
         var responseBody = updateUserApiResponseBody.toPrettyString();

@@ -2,12 +2,9 @@ package com.qa.apis;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.microsoft.playwright.APIRequest;
 import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.APIResponse;
-import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.RequestOptions;
-import com.qa.constants.Constants;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;

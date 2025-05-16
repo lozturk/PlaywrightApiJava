@@ -2,23 +2,19 @@ package com.qa.apitests.crudtests;
 
 
 import com.qa.apis.CreateUserApi;
-import com.qa.apis.GetUserApi;
 import com.qa.apitests.BaseTest;
+import com.qa.constants.Constants;
 import com.qa.utils.User;
 import com.qa.utils.Users;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.qa.constants.ApiPaths.CREATE_USERS;
-import static com.qa.constants.ApiPaths.GET_USERS;
 
 public class CreateUserApiTests extends BaseTest {
 
@@ -27,7 +23,7 @@ public class CreateUserApiTests extends BaseTest {
     private Users users;
 
     @DataProvider (name = "userData", parallel = true)
-    public Object[][] createUserData() throws IOException, InterruptedException {
+    public Object[][] createUserData() throws IOException {
 
         // Retrieve the token from VM options
         String token = System.getProperty("token");
@@ -79,14 +75,14 @@ public class CreateUserApiTests extends BaseTest {
                 {"Authorization", token, this.users},
                 {"Authorization", token, fileBytes},
         };
-    };
+    }
 
 
     @Test (description = "This is create user test", dataProvider = "userData")
-    public void createUserTest (String headerKey, String token, Object body) throws IOException, InterruptedException {
+    public void createUserTest (String headerKey, String token, Object body) throws IOException {
         this.createUserApi = new CreateUserApi(apiRequestContext);
         var createUsersApiResponse = createUserApi
-                .createUser(CREATE_USERS.getApiPath(),headerKey, token, body);
+                .createUser(Constants.BASE_ENV_PATH,headerKey, token, body);
         Assert.assertEquals(createUsersApiResponse.status(), 201, "Status code is not 200");
         var createUsersApiResponseBody = createUserApi.getJsonNode(createUsersApiResponse);
         var responseBody = createUsersApiResponseBody.toPrettyString();
