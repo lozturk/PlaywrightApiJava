@@ -7,8 +7,9 @@ import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.APIResponse;
 import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.RequestOptions;
+import com.qa.constants.Constants;
 import lombok.Getter;
-
+import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 
 /**
@@ -16,43 +17,24 @@ import java.io.IOException;
  * It initializes the Playwright instance and APIRequestContext for making API requests.
  */
 
+@Slf4j
 @Getter
 public abstract class BaseApi {
 
-    private final Playwright playwright;
-    private final APIRequest apiRequest;
+
     private final APIRequestContext apiRequestContext;
-    private static final String BASE_URL = "https://gorest.co.in";
     private final ObjectMapper objectMapper;
 
     /**
      * Constructor initializes Playwright and APIRequestContext.
      */
-    public BaseApi() {
+    public BaseApi(APIRequestContext apiRequestContext) {
         // Initialize Playwright and create an APIRequest & APIRequestContext
-        playwright = Playwright.create();
-        apiRequest = playwright.request();
-        apiRequestContext = apiRequest.newContext(new APIRequest.NewContextOptions()
-                .setBaseURL(BASE_URL));
+        this.apiRequestContext = apiRequestContext;
         this.objectMapper = new ObjectMapper();
     }
 
-    /**
-     * Cleans up resources after each test.
-     * Disposes of the APIRequestContext and closes the Playwright instance.
-     */
-    public void tearDown() {
-        // Dispose of the APIRequestContext to release resources
-        if (apiRequestContext != null) {
-            apiRequestContext.dispose();
-        }
 
-        // Close the Playwright instance to clean up resources
-        if (playwright != null) {
-            playwright.close();
-        }
-
-    }
 
     public RequestOptions setQueryParameter(String name, int value) {
         return RequestOptions.create().setQueryParam(name, value);

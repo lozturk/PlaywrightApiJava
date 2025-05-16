@@ -33,7 +33,7 @@ public class CreateUserWithPojoTest extends BaseTest {
 
         // Send a POST request to create the user
         ObjectMapper objectMapper = new ObjectMapper();
-        APIResponse response = context.post("/public/v2/users",
+        APIResponse response = apiRequestContext.post("/public/v2/users",
                 RequestOptions.create()
                         .setHeader("Content-Type", "application/json")
                         .setHeader("Authorization", "Bearer " + token)

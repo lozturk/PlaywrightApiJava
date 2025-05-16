@@ -3,6 +3,8 @@ package com.qa.apitests;
 import com.microsoft.playwright.APIRequest;
 import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.Playwright;
+import com.qa.constants.Constants;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
@@ -10,10 +12,8 @@ import org.testng.annotations.BeforeTest;
  * BaseTest class provides a common setup and teardown mechanism for API tests.
  * It initializes the Playwright instance and APIRequestContext for making API requests.
  */
+@Slf4j
 public class BaseTest {
-
-    // Base URL for the API requests
-    protected static final String BaseURL = "https://gorest.co.in";
 
     // Playwright instance for managing API interactions
     protected Playwright playwright;
@@ -22,7 +22,7 @@ public class BaseTest {
     protected APIRequest request;
 
     // APIRequestContext instance for executing API requests
-    protected APIRequestContext context;
+    protected APIRequestContext apiRequestContext;
 
     /**
      * Initializes the Playwright instance and APIRequestContext before each test.
@@ -37,8 +37,8 @@ public class BaseTest {
         request = playwright.request();
 
         // Create a new APIRequestContext with the specified base URL
-        context = request.newContext(new APIRequest.NewContextOptions()
-                .setBaseURL(BaseURL));
+        apiRequestContext = request.newContext(new APIRequest.NewContextOptions()
+                .setBaseURL(Constants.BASE_ENV_URL));
     }
 
     /**
@@ -47,14 +47,25 @@ public class BaseTest {
      */
     @AfterTest
     public void tearDown() {
-        // Dispose of the APIRequestContext to release resources
-        if (context != null) {
-            context.dispose();
+        try {
+            if (this.apiRequestContext != null) {
+                this.apiRequestContext.dispose();
+            }
+        } catch (Exception e) {
+            log.error("Error disposing APIRequestContext: ", e);
         }
-
-        // Close the Playwright instance to clean up resources
-        if (playwright != null) {
-            playwright.close();
+        try {
+            if (this.playwright != null) {
+                this.playwright.close();
+            }
+        } catch (Exception e) {
+            log.error("Error closing Playwright: ", e);
         }
     }
+
+    /**
+     * Cleans up resources after each test.
+     * Disposes of the APIRequestContext and closes the Playwright instance.
+     */
+
 }

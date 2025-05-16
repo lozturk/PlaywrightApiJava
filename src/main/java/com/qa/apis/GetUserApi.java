@@ -1,16 +1,16 @@
 package com.qa.apis;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.APIResponse;
+import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
-
+@Slf4j
 public class GetUserApi extends BaseApi{
 
 
 
-    public GetUserApi() {
-        super();
+    public GetUserApi(APIRequestContext apiRequestContext) {
+        super(apiRequestContext);
     }
 
     public APIResponse getUsers(String path) {
@@ -20,10 +20,6 @@ public class GetUserApi extends BaseApi{
     public APIResponse getUserById(String path, int id) {
         return super.getApiRequestContext()
                     .get(path, setQueryParameter("id", id));
-    }
-
-    public void tearDown() {
-        super.tearDown();
     }
 
 

@@ -27,7 +27,7 @@ public class CreateUserWithJsonStringTest extends BaseTest {
         String token = System.getProperty("gorest.api.key");
 
         // Send a POST request to the "/public/v2/users" endpoint with the JSON string as the request body
-        APIResponse response = context.post("/public/v2/users",
+        APIResponse response = apiRequestContext.post("/public/v2/users",
                 RequestOptions.create()
                         .setHeader("Content-Type", "application/json")
                         .setHeader("Authorization", "Bearer " + token)
@@ -58,7 +58,7 @@ public class CreateUserWithJsonStringTest extends BaseTest {
         int userId = jsonNode.get("id").asInt();
 
         // Fetch the created user with a GET call
-        APIResponse getUserResponse = context.get("/public/v2/users/" + userId,
+        APIResponse getUserResponse = apiRequestContext.get("/public/v2/users/" + userId,
                 RequestOptions.create()
                         .setHeader("Content-Type", "application/json")
                         .setHeader("Authorization", "Bearer " + token));

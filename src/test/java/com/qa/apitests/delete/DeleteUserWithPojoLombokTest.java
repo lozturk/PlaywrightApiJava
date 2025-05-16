@@ -33,7 +33,7 @@ public class DeleteUserWithPojoLombokTest extends BaseTest {
                 .build();
 
         ObjectMapper objectMapper = new ObjectMapper(); // Create an ObjectMapper instance for JSON handling
-        APIResponse postResponse = context.post("/public/v2/users", // Send a POST request to create the user
+        APIResponse postResponse = apiRequestContext.post("/public/v2/users", // Send a POST request to create the user
                 RequestOptions.create()
                         .setHeader("Content-Type", "application/json") // Set the content type to JSON
                         .setHeader("Authorization", "Bearer " + token) // Add the authorization token
@@ -45,7 +45,7 @@ public class DeleteUserWithPojoLombokTest extends BaseTest {
         System.out.println("Created User: " + createdUser); // Print the created user details
 
         // Step 2: Delete the user using a DELETE call
-        APIResponse deleteResponse = context.delete("/public/v2/users/" + userId, // Send a DELETE request to delete the user
+        APIResponse deleteResponse = apiRequestContext.delete("/public/v2/users/" + userId, // Send a DELETE request to delete the user
                 RequestOptions.create()
                         .setHeader("Authorization", "Bearer " + token)); // Add the authorization token
 
@@ -54,7 +54,7 @@ public class DeleteUserWithPojoLombokTest extends BaseTest {
         System.out.println("User with ID " + userId + " deleted successfully."); // Print a success message
 
         // Step 3: Validate the user is deleted using a GET call
-        APIResponse getResponse = context.get("/public/v2/users/" + userId, // Send a GET request to fetch the deleted user
+        APIResponse getResponse = apiRequestContext.get("/public/v2/users/" + userId, // Send a GET request to fetch the deleted user
                 RequestOptions.create()
                         .setHeader("Authorization", "Bearer " + token)); // Add the authorization token
 

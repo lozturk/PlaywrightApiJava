@@ -63,7 +63,7 @@ public class CreateUserWithJsonFileTests extends BaseTest {
         String token = System.getProperty("gorest.api.key");
 
         // Send a POST request to create the user with the updated JSON payload
-        APIResponse response = context.post("/public/v2/users",
+        APIResponse response = apiRequestContext.post("/public/v2/users",
                 RequestOptions.create()
                         .setHeader("Content-Type", "application/json")
                         .setHeader("Authorization", "Bearer " + token)

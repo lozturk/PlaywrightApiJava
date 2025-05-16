@@ -23,7 +23,7 @@ public class UpdateUserWithPojoLombokTest extends BaseTest {
         String token = System.getProperty("gorest.api.key");
 
         // Make a GET call to retrieve the user details
-        APIResponse getResponse = context.get("/public/v2/users",
+        APIResponse getResponse = apiRequestContext.get("/public/v2/users",
                 RequestOptions.create()
                         .setHeader("Authorization", "Bearer " + token));
 
@@ -60,7 +60,7 @@ public class UpdateUserWithPojoLombokTest extends BaseTest {
         System.out.println("Updated User before making the PUT call: " + updatedUser);
 
         // Make a PUT call to update the user
-        APIResponse putResponse = context.put("/public/v2/users/" + userId,
+        APIResponse putResponse = apiRequestContext.put("/public/v2/users/" + userId,
                 RequestOptions.create()
                         .setHeader("Content-Type", "application/json")
                         .setHeader("Authorization", "Bearer " + token)

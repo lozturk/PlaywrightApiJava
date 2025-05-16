@@ -17,7 +17,7 @@ public class GetApiCallTests extends BaseTest {
     @Test
     public void getUserApiTests() throws IOException {
         // Sends a GET request to the "/public/v2/users" endpoint and stores the response
-        APIResponse response = context.get("/public/v2/users");
+        APIResponse response = apiRequestContext.get("/public/v2/users");
 
         // Prints the HTTP status code of the response
         System.out.println("Response status: " + response.status());
@@ -65,7 +65,7 @@ public class GetApiCallTests extends BaseTest {
 
     @Test
     public void getSpecificUserApiTest() throws IOException {
-        APIResponse response = context.get("/public/v2/users",
+        APIResponse response = apiRequestContext.get("/public/v2/users",
                 RequestOptions
                         .create()
                         .setQueryParam("id", 7880964));

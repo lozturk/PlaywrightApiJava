@@ -15,7 +15,7 @@ public class APIResponseHeadersTest extends BaseTest {
     @Test
     public void getHeadersTest() {
         // Send a GET request to the "/public/v2/users" endpoint
-        APIResponse response = context.get("/public/v2/users");
+        APIResponse response = apiRequestContext.get("/public/v2/users");
 
         // Assert that the HTTP status code is 200 (OK)
         Assert.assertEquals(response.status(), 200, "Status code is not 200");
